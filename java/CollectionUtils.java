@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class CollectionUtils {
-    public <T extends Comparable> List<T> sort(List<T> unsortedList) {
+    public static <T extends Comparable> List<T> sort(List<T> unsortedList) {
         List<T> everyday = new ArrayList<>(unsortedList);
         boolean ordered = Ordering.natural().isOrdered(everyday);
 
