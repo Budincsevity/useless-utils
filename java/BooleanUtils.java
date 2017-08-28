@@ -3,7 +3,7 @@ import java.util.Random;
 public class BooleanUtils {
     private static final Random RANDOM = new Random();
 
-    public boolean maybe() {
+    public static boolean maybe() {
         return RANDOM.nextBoolean();
     }
 }
