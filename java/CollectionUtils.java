@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CollectionUtils {
+public final class CollectionUtils {
+    
+    private CollectionUtils() {
+    }
+    
     public static <T extends Comparable> List<T> sort(List<T> unsortedList) {
         List<T> everyday = new ArrayList<>(unsortedList);
         boolean ordered = Ordering.natural().isOrdered(everyday);
