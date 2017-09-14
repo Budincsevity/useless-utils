@@ -1,7 +1,10 @@
 import java.util.Random;
 
-public class BooleanUtils {
+public final class BooleanUtils {
     private static final Random RANDOM = new Random();
+
+    private BooleanUtils() {
+    }
 
     public static boolean maybe() {
         return RANDOM.nextBoolean();
