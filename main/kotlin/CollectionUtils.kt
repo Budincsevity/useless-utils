@@ -3,16 +3,24 @@ import kotlinx.coroutines.experimental.channels.Channel
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
+import java.util.*
 import java.util.concurrent.TimeUnit
 
+private infix fun <T> MutableList<T>.im(methodName: String): MutableList<T> {
+    Collections::class.java.methods.first { it.parameterCount == 1 && it.name == methodName }?.invoke(null, this)
+    return this
+}
+
+private fun <T : Comparable<*>> MutableList<T>.inn() = Ordering.natural<T>().isOrdered(this)
+
 object CollectionUtils {
-    fun <T : Comparable<Nothing>> sort(unsortedList: List<T>): List<T> {
+
+    fun <T : Comparable<*>> shuffleSort(unsortedList: List<T>): List<T> {
         val everyday = unsortedList.toMutableList()
         var ordered = Ordering.natural<T>().isOrdered(everyday)
 
         while (!ordered) {
-            everyday.shuffle() // Everyday I'm shufflin'
-            ordered = Ordering.natural<T>().isOrdered(everyday)
+            ordered = (everyday im "shuffle").inn()
         }
 
         return everyday
